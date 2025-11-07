@@ -14,6 +14,29 @@ class Shopping_cart
         };
 
         List<string> cart=new List<string>();
-        
+        bool shopping = true;
+        while(shopping)
+        {
+            Console.WriteLine("\nAvailable Product");
+            foreach (var item in productprice)
+            {
+                Console.WriteLine($"{item.Key}: ${item.Value}");
+            }
+            Console.WriteLine("\nEnter the product name to add to cart or type 'checkout' to finish:");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "checkout")
+            {
+                shopping = false;
+            }
+            else if (productprice.ContainsKey(input))
+            {
+                cart.Add(input);
+                Console.WriteLine($"{input} added to cart.");
+            }
+            else
+            {
+                Console.WriteLine("Product not found. Please try again.");
+            }
+        }
     }
 }
